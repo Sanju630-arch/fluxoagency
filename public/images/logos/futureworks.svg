@@ -1,0 +1,8 @@
+<svg width="150" height="50" viewBox="0 0 150 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 10H35V15H15V22.5H30V27.5H15V40H10V10Z" fill="white"/>
+  <path d="M40 10H45V35H60V40H40V10Z" fill="white"/>
+  <path d="M65 10H85V15H70V22.5H85V27.5H70V35H85V40H65V10Z" fill="white"/>
+  <path d="M90 10H110V15H95V22.5H110V27.5H95V35H110V40H90V10Z" fill="white"/>
+  <path d="M115 10H140V15H130V40H125V15H115V10Z" fill="white"/>
+  <polygon points="75,5 85,10 75,15" fill="white"/>
+</svg> 

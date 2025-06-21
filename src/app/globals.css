@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #3A76F0;    /* Neon Blue */
+  --secondary: #0B0C0D;  /* Deep Black */
+  --accent: #3AFFE0;     /* Electric Cyan */
+  --background: #111111; /* Jet Black */
+}
+
+@layer base {
+  body {
+    @apply bg-background text-white;
+  }
+}
+
+@layer components {
+  .hero-heading {
+    @apply font-space font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-tight;
+  }
+  
+  .section-heading {
+    @apply font-space font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6;
+  }
+  
+  .sub-heading {
+    @apply font-space font-semibold text-2xl md:text-3xl text-white mb-4;
+  }
+  
+  .card {
+    @apply bg-secondary bg-opacity-70 backdrop-blur-sm rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_rgba(58,255,224,0.3)];
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-primary hover:bg-opacity-80 hover:shadow-[0_0_20px_rgba(58,118,240,0.5)];
+  }
+  
+  .btn-accent {
+    @apply bg-accent text-secondary px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-accent hover:bg-opacity-80 hover:shadow-[0_0_20px_rgba(58,255,224,0.5)];
+  }
+
+  .btn-outline {
+    @apply border border-white border-opacity-30 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:border-accent hover:text-accent;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  /* Grid pattern background */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 15px rgba(58, 118, 240, 0.3), 0 0 30px rgba(58, 255, 224, 0.1);
+  }
+  
+  .glass-effect {
+    @apply bg-secondary bg-opacity-40 backdrop-blur-md border border-white border-opacity-10;
+  }
+} 

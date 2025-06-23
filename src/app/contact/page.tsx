@@ -452,7 +452,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="text-white font-medium">Phone</h4>
-                    <p className="text-white/70">+1 (555) 123-4567</p>
+                    <p className="text-white/70">+916305007783</p>
                   </div>
                 </div>
                 
@@ -464,7 +464,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="text-white font-medium">Email</h4>
-                    <p className="text-white/70">info@fluxo-ai.com</p>
+                    <p className="text-white/70">info@fluxoagency.com</p>
                   </div>
                 </div>
                 
@@ -477,7 +477,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="text-white font-medium">Location</h4>
-                    <p className="text-white/70">123 Innovation Drive<br />San Francisco, CA 94103</p>
+                    <p className="text-white/70">Hyderabad<br />India, 500008</p>
                   </div>
                 </div>
               </div>

@@ -477,7 +477,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="text-white font-medium">Location</h4>
-                    <p className="text-white/70">Hyderabad<br />India, 500008</p>
+                    <p className="text-white/70">Hyderabad<br />India</p>
                   </div>
                 </div>
               </div>

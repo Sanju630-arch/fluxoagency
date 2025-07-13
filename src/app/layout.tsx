@@ -1,22 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ClientOnly from '../components/utils/ClientOnly';
 import LoadingScreen from '../components/ui/LoadingScreen';
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: 'swap',
-  variable: "--font-inter"
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  display: 'swap',
-  variable: "--font-space-grotesk"
-});
 
 export const metadata: Metadata = {
   title: "FLUXO - AI Automation Solutions",
@@ -29,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" style={{ fontFamily: 'SF Pro, SF Pro Display, SF Pro Text, system-ui, sans-serif', fontWeight: 700 }}>
       <body className="min-h-screen flex flex-col bg-background text-white">
         <ClientOnly>
           <LoadingScreen />

@@ -14,8 +14,7 @@ module.exports = {
         background: 'var(--background)',
       },
       fontFamily: {
-        sans: ['var(--font-inter)'],
-        space: ['var(--font-space-grotesk)'],
+        sans: ['SF Pro Display', 'SF Pro', 'SF Pro Text', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

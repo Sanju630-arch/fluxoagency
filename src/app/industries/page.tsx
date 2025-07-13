@@ -1,4 +1,9 @@
+'use client';
+
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 
 export default function Industries() {
   return (
@@ -100,100 +105,33 @@ export default function Industries() {
       ))}
       
       {/* ROI Calculator Section */}
-      <section className="py-24 bg-gradient-to-b from-background to-secondary/70">
+      <section className="py-24 bg-gradient-to-b from-white to-gray-100 dark:from-background dark:to-secondary/70 transition-colors duration-500">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="section-heading">
+            <h2 className="section-heading text-gray-900 dark:text-white">
               Calculate Your{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
                 ROI
               </span>
             </h2>
-            <p className="mt-4 text-lg text-white/70">
+            <p className="mt-4 text-lg text-gray-700 dark:text-white/70">
               Estimate the return on investment for implementing our AI automation solutions in your industry.
             </p>
           </div>
-          
-          <div className="glass-effect rounded-2xl p-8 md:p-12 relative overflow-hidden">
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/30 rounded-full filter blur-[80px]"></div>
-            <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-accent/30 rounded-full filter blur-[60px]"></div>
-            
+          <div className="glass-effect rounded-2xl p-8 md:p-12 relative overflow-hidden bg-white dark:bg-secondary/80 transition-colors duration-500">
+            {/* Animated icons for aesthetics */}
+            <motion.div
+              className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-primary/30 to-accent/30 rounded-full blur-2xl opacity-60 animate-pulse"
+              animate={{ scale: [1, 1.1, 1], rotate: [0, 15, -15, 0] }}
+              transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full blur-2xl opacity-50 animate-pulse"
+              animate={{ scale: [1, 1.15, 1], rotate: [0, -10, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 10, ease: 'easeInOut' }}
+            />
             <div className="relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="col-span-2">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-white text-sm font-medium mb-2">
-                        Industry
-                      </label>
-                      <select className="w-full bg-secondary/90 border border-white/10 rounded-lg px-4 py-3 text-white">
-                        <option>Select your industry</option>
-                        {industries.map(industry => (
-                          <option key={industry.id} value={industry.id}>{industry.name}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-medium mb-2">
-                        Company Size
-                      </label>
-                      <select className="w-full bg-secondary/90 border border-white/10 rounded-lg px-4 py-3 text-white">
-                        <option>Select company size</option>
-                        <option>Small (1-50 employees)</option>
-                        <option>Medium (51-500 employees)</option>
-                        <option>Large (501+ employees)</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-medium mb-2">
-                        Current Process Efficiency
-                      </label>
-                      <select className="w-full bg-secondary/90 border border-white/10 rounded-lg px-4 py-3 text-white">
-                        <option>Select efficiency level</option>
-                        <option>Low (Manual processes)</option>
-                        <option>Medium (Some automation)</option>
-                        <option>High (Mostly automated)</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-medium mb-2">
-                        Annual Budget for Technology
-                      </label>
-                      <input 
-                        type="text" 
-                        placeholder="$ Amount" 
-                        className="w-full bg-secondary/90 border border-white/10 rounded-lg px-4 py-3 text-white"
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-6">
-                    <button className="btn-primary w-full sm:w-auto">
-                      Calculate ROI
-                    </button>
-                  </div>
-                </div>
-                <div className="card bg-secondary/80">
-                  <h3 className="font-medium text-white text-xl mb-6">Estimated ROI</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-white/70 mb-1">Efficiency Improvement</p>
-                      <p className="text-accent font-bold text-2xl">+40%</p>
-                    </div>
-                    <div>
-                      <p className="text-white/70 mb-1">Cost Reduction</p>
-                      <p className="text-accent font-bold text-2xl">-25%</p>
-                    </div>
-                    <div>
-                      <p className="text-white/70 mb-1">Payback Period</p>
-                      <p className="text-accent font-bold text-2xl">6 months</p>
-                    </div>
-                    <div className="pt-4 border-t border-white/10">
-                      <p className="text-white/70 mb-1">5-Year ROI</p>
-                      <p className="text-accent font-bold text-3xl">350%</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ROIAnimatedCalculator />
             </div>
           </div>
         </div>
@@ -418,3 +356,162 @@ const testimonials = [
     quote: 'The fraud detection system from FLUXO has saved us millions in potential losses and reduced false positives by 60%. Their team\'s expertise in both finance and AI is truly impressive.',
   }
 ]; 
+
+function ROIAnimatedCalculator() {
+  const [industry, setIndustry] = useState('');
+  const [companySize, setCompanySize] = useState('');
+  const [efficiency, setEfficiency] = useState('');
+  const [budget, setBudget] = useState('');
+  const [result, setResult] = useState({
+    efficiencyImprovement: 0,
+    costReduction: 0,
+    payback: 0,
+    roi5y: 0,
+  });
+  const [animated, setAnimated] = useState({
+    efficiencyImprovement: 0,
+    costReduction: 0,
+    payback: 0,
+    roi5y: 0,
+  });
+
+  // Real-time calculation on input change
+  useEffect(() => {
+    let eff = 30, cost = 15, payback = 12, roi = 150;
+    if (efficiency === 'Low (Manual processes)') {
+      eff = 50; cost = 30; payback = 6; roi = 350;
+    } else if (efficiency === 'Medium (Some automation)') {
+      eff = 40; cost = 25; payback = 8; roi = 250;
+    } else if (efficiency === 'High (Mostly automated)') {
+      eff = 20; cost = 10; payback = 18; roi = 100;
+    }
+    setResult({
+      efficiencyImprovement: eff,
+      costReduction: cost,
+      payback: payback,
+      roi5y: roi,
+    });
+    setAnimated({ efficiencyImprovement: 0, costReduction: 0, payback: 0, roi5y: 0 });
+  }, [industry, companySize, efficiency, budget]);
+
+  // Animate numbers when result changes
+  useEffect(() => {
+    const duration = 800;
+    const start = performance.now();
+    function animate() {
+      const now = performance.now();
+      const t = Math.min((now - start) / duration, 1);
+      setAnimated({
+        efficiencyImprovement: Math.round(result.efficiencyImprovement * t),
+        costReduction: Math.round(result.costReduction * t),
+        payback: Math.round(result.payback * t),
+        roi5y: Math.round(result.roi5y * t),
+      });
+      if (t < 1) requestAnimationFrame(animate);
+    }
+    animate();
+  }, [result]);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+          <div>
+            <label className="block text-gray-900 text-sm font-bold mb-2">Industry</label>
+            <select
+              className="w-full bg-white border border-gray-300 focus:border-primary rounded-lg px-4 py-3 text-gray-900 font-bold transition-colors duration-300 focus:outline-none"
+              value={industry}
+              onChange={e => setIndustry(e.target.value)}
+            >
+              <option value="">Select your industry</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="finance">Finance</option>
+              <option value="retail">Retail</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-gray-900 text-sm font-bold mb-2">Company Size</label>
+            <select
+              className="w-full bg-white border border-gray-300 focus:border-primary rounded-lg px-4 py-3 text-gray-900 font-bold transition-colors duration-300 focus:outline-none"
+              value={companySize}
+              onChange={e => setCompanySize(e.target.value)}
+            >
+              <option value="">Select company size</option>
+              <option>Small (1-50 employees)</option>
+              <option>Medium (51-500 employees)</option>
+              <option>Large (501+ employees)</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-gray-900 text-sm font-bold mb-2">Current Process Efficiency</label>
+            <select
+              className="w-full bg-white border border-gray-300 focus:border-primary rounded-lg px-4 py-3 text-gray-900 font-bold transition-colors duration-300 focus:outline-none"
+              value={efficiency}
+              onChange={e => setEfficiency(e.target.value)}
+            >
+              <option value="">Select efficiency level</option>
+              <option>Low (Manual processes)</option>
+              <option>Medium (Some automation)</option>
+              <option>High (Mostly automated)</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-gray-900 text-sm font-bold mb-2">Annual Budget for Technology</label>
+            <input
+              type="text"
+              placeholder="$ Amount"
+              className="w-full bg-white border border-gray-300 focus:border-primary rounded-lg px-4 py-3 text-gray-900 font-bold transition-colors duration-300 focus:outline-none"
+              value={budget}
+              onChange={e => setBudget(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="card bg-gray-900 text-white dark:bg-secondary/80 dark:text-white transition-colors duration-500 shadow-2xl border-2 border-accent/40">
+        <h3 className="font-bold text-white text-xl mb-6 flex items-center gap-2">
+          <svg className="w-6 h-6 text-accent animate-bounce" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 19V6M5 12l7-7 7 7" /></svg>
+          Estimated ROI
+        </h3>
+        <div className="space-y-4">
+          <div>
+            <p className="text-white/80 mb-1 flex items-center gap-2">
+              <svg className="w-4 h-4 text-primary animate-spin" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg>
+              Efficiency Improvement
+            </p>
+            <motion.p className="text-accent font-bold text-2xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              +{animated.efficiencyImprovement}%
+            </motion.p>
+          </div>
+          <div>
+            <p className="text-white/80 mb-1 flex items-center gap-2">
+              <svg className="w-4 h-4 text-accent animate-pulse" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" /></svg>
+              Cost Reduction
+            </p>
+            <motion.p className="text-accent font-bold text-2xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              -{animated.costReduction}%
+            </motion.p>
+          </div>
+          <div>
+            <p className="text-white/80 mb-1 flex items-center gap-2">
+              <svg className="w-4 h-4 text-primary animate-bounce" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3" /></svg>
+              Payback Period
+            </p>
+            <motion.p className="text-accent font-bold text-2xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              {animated.payback} months
+            </motion.p>
+          </div>
+          <div className="pt-4 border-t border-white/10">
+            <p className="text-white/80 mb-1 flex items-center gap-2">
+              <svg className="w-4 h-4 text-accent animate-spin" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg>
+              5-Year ROI
+            </p>
+            <motion.p className="text-accent font-bold text-3xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              {animated.roi5y}%
+            </motion.p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+} 
